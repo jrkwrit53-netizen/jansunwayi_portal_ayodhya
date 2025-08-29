@@ -50,7 +50,7 @@ let cacheTimestamp = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 // Base URL for API calls
-const API_BASE = '/api';
+const API_BASE = 'https://jansunwayi-portal-ayodhya-six.vercel.app';
 const API_BASE_LOCAL = 'http://localhost:5000';
 const API_TIMEOUT = 3000; // 3 seconds
 

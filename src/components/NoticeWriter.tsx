@@ -49,7 +49,7 @@ interface NoticeWriterProps {
   caseId?: string;
 }
 
-const API_BASE = "https://jansunwayi-portal-ayodhya.onrender.com/"
+const API_BASE = "https://jansunwayi-portal-ayodhya-six.vercel.app/"
 
 const printStyles = `
   @media print {
@@ -129,7 +129,7 @@ export default function CourtNoticeWriter({ caseId }: NoticeWriterProps) {
       // Generate HTML content for email
       const emailHtml = generateEmailHTML()
 
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("https://jansunwayi-portal-ayodhya-six.vercel.app/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

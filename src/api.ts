@@ -24,7 +24,7 @@ const logError = (message: string, error: unknown) => {
 };
 
 const API = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000',
+    baseURL: 'https://jansunwayi-portal-ayodhya-six.vercel.app/',
     headers: {
         'Content-Type': 'application/json'
     }
