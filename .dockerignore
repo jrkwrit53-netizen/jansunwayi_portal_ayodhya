@@ -1,0 +1,28 @@
+# Ignore node modules (will be installed in image)
+node_modules
+server/node_modules
+
+# Ignore build output (rebuild inside Docker)
+dist
+
+# Logs and temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git & editor configs
+.git
+.gitignore
+.vscode
+.idea
+
+# Local env files (never copy secrets)
+.env
+.env.local
+.env.*.local
