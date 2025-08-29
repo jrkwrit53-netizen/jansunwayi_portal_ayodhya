@@ -10,7 +10,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Configure CORS with specific options
-app.use(cors());
+app.use(cors({
+  origin: 'https://jansunwayi-portal-ayodhya-3hgx.vercel.app', // Frontend domain
+  credentials: true
+}));
 
 app.use(express.json());
 
@@ -189,6 +192,43 @@ app.post('/send-email', async (req, res) => {
     // Send email
     const info = await transporter.sendMail(mailOptions);
 
+    return res.status(200).json({
+      success: true,
+      messageId: info.messageId,
+      message: 'Email sent successfully',
+    });
+  } catch (error) {
+    console.error('Email sending error:', error);
+    return res.status(500).json({
+      error: 'Failed to send email',
+      details: error instanceof Error ? error.message : 'Unknown error',
+    });
+  }
+});
+app.post('/api/send-email', async (req, res) => {
+  try {
+    const { to, subject, html } = req.body;
+    if (!to || !subject || !html) {
+      return res.status(400).json({ error: 'Missing required fields: to, subject, html' });
+    }
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: "jrkwrit53@gmail.com",
+        pass: "bqvd jtyv dilm pnnr",
+      },
+    });
+    const mailOptions = {
+      from: {
+        name: 'District Magistrate Office, Ayodhya',
+        address: process.env.GMAIL_USER || '',
+      },
+      to: to,
+      subject: subject,
+      html: html,
+      attachments: [],
+    };
+    const info = await transporter.sendMail(mailOptions);
     return res.status(200).json({
       success: true,
       messageId: info.messageId,
