@@ -52,7 +52,7 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 // Base URL for API calls
 const API_BASE = 'https://jansunwayi-portal-ayodhya-six.vercel.app';
 const API_BASE_LOCAL = 'http://localhost:5000';
-const API_TIMEOUT = 3000; // 3 seconds
+const API_TIMEOUT = 10000; // 10 seconds
 
 // Error logging utility
 const logError = (message: string, error: any) => {
@@ -325,6 +325,9 @@ export const saveSubDepartment = async (departmentId: number, subDeptNameEn: str
 };
 
 export const fetchSubDepartments = async (departmentId?: number) => {
+  if (typeof departmentId === 'undefined' || departmentId === null) {
+    return [];
+  }
   try {
     console.log('API: Fetching sub-departments for departmentId:', departmentId);
     
